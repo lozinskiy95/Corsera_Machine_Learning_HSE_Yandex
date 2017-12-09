@@ -1,0 +1,37 @@
+import pandas as pd
+import numpy as np
+from sklearn.tree import DecisionTreeClassifier
+df1=pd.read_csv('titanic.csv')
+df1_2=df[['Pclass','Fare','Age','Sex']][df['Age'].isnull()==False]
+df1_2['Sex'][df1_2['Sex']=='female']=0
+df1_2['Sex'][df1_2['Sex']=='male']=1
+df4=df['Survived'][df['Age'].isnull()==False]
+
+x=np.array(df1_2)
+
+y=np.array(df4)
+print y
+clf = DecisionTreeClassifier(random_state=241)
+clf.fit(x, y)
+importances = clf.feature_importances_
+
+import pandas as pd
+import numpy as np
+from sklearn.tree import DecisionTreeClassifier
+df1=pd.read_csv('titanic.csv')
+df1_2=df1[['Pclass','Fare','Age','Sex']][df1['Age'].isnull()==False]
+#df1_2=df1_2[['Pclass','Fare','Age','Sex']][df1_2['Pclass'].isnull()==False]
+#df1_2=df1_2[['Pclass','Fare','Age','Sex']][df1_2['Fare'].isnull()==False]
+#df1_2=df1_2[['Pclass','Fare','Age','Sex']][df1_2['Sex'].isnull()==False]
+df1_2['Sex'][df1_2['Sex']=='female']=0
+df1_2['Sex'][df1_2['Sex']=='male']=1
+df4=df1['Survived'][np.isnan(df1['Age'])==False]
+
+x=np.array(df1_2)
+
+y=np.array(df4)
+print df1_2['Sex'].value_counts()
+clf = DecisionTreeClassifier(random_state=241)
+clf.fit(x, y)
+importances = clf.feature_importances_
+print importances
