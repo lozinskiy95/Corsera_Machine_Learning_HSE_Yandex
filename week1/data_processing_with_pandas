@@ -1,0 +1,29 @@
+from pandas import DataFrame, read_csv
+import pandas as pd 
+data=pd.read_csv('titanic.csv',index_col="PassengerId")
+dic={}
+
+k=0
+for index, row in data.iterrows():
+    if row["Sex"]=='female':
+        print row["Name"]
+        name=str(row["Name"].split(".")[1]).split()[0].strip(")").strip("(")
+        if name in dic.keys():
+            dic[name]=dic[name]+1
+        else:
+            dic[name]=1
+        k=k+1
+
+print dic 
+
+
+names = ['Bob','Jessica','Mary','John','Mel']
+births = [968, 155, 77, 578, 973]
+BabyDataSet = list(zip(names,births))
+df = pd.DataFrame(data = BabyDataSet, columns=['Names', 'Births'])
+
+df.to_csv('births1880.csv',index=False,header=False)
+Location=r'D:\DOCUMENTS\univer(term9)\machine_learning_coursera\task_1_1\births1880.csv'
+df=pd.read_csv(Location, header=None, names=['Names','Births'])
+print()
+
